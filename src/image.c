@@ -3,6 +3,9 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 struct CImage
 {
   char* imageName;
@@ -14,6 +17,8 @@ struct CImage
 
 void write_image(CImage* image)
 {
+  stbi_flip_vertically_on_write(1);
+  
   switch (image->imageProperties.type)
   {
     case TGA:

@@ -7,9 +7,6 @@
 #define swap(x,y) do { int temp = x; x = y; y = temp; } while(0)
 #define abs(x) (x > 0 ? x  :-(x))
 
-#define WIDTH  3000
-#define HEIGHT 3000
-
 Pixel r = { .r = 255, .g = 0  , .b = 0  };
 Pixel g = { .r = 0  , .g = 255, .b = 0  };
 Pixel b = { .r = 0  , .g = 0  , .b = 255};
@@ -168,23 +165,17 @@ cgltf_data* load_scene(char* filename)
 
 int main()
 {
-  ImageProperties prop = {
-    .type = TGA,
-    .width = WIDTH,
-    .height = HEIGHT,
-    .compnents = 3
-  };
-  CImage* image = create_image("out", &prop);
+  CImage image = create_cimage(3);
 
   cgltf_data* data = load_scene("scene.gltf");
 
-  draw_scene(data, image);
+  draw_scene(data, &image);
 
-  write_image(image);
+  write_image(&image, "output", TGA);
 
   //cleanup
   cgltf_free(data);
-  destroy_image(image);
+  destroy_image(&image);
 
   return 0;
 }

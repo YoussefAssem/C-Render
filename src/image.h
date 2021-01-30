@@ -1,5 +1,9 @@
 #pragma once
 
+#define WIDTH        2000
+#define HEIGHT       2000
+#define COMPONENTS   3
+
 typedef enum
 {
   PNG, BMP, TGA, JPG, HDR
@@ -14,19 +18,14 @@ typedef struct
 
 typedef struct
 {
-  IMAGETYPE type;
+  unsigned int components;
+  void* pixels;
+}CImage;
 
-  int width;
-  int height;
-  int compnents;
-} ImageProperties;
+CImage create_cimage(unsigned int components);
 
-typedef struct CImage CImage;
-
-CImage* create_image(char* imageName, ImageProperties* imageProperties);
-
-void destroy_image(CImage* image);
-
-void write_image(CImage* image);
+void write_image(CImage* image, char* outName, IMAGETYPE type);
 
 void set_pixel(CImage* image, int x, int y, char r, char g, char b, char a);
+
+void destroy_image(CImage* image);

@@ -49,5 +49,7 @@ void set_pixel(CImage* image, int x, int y, char r, char g, char b, char a)
     .b = b
   };
 
-  pixels[x + (y * WIDTH)] = pxValue;
+  unsigned int pixelIndex = x + y * WIDTH;
+  if (pixelIndex < WIDTH * HEIGHT)
+    pixels[pixelIndex] = pxValue;
 }

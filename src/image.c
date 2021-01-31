@@ -38,18 +38,11 @@ void destroy_image(CImage* image)
   free(image->pixels);
 }
 
-void set_pixel(CImage* image, int x, int y, char r, char g, char b, char a)
+void set_pixel(CImage* image, int x, int y, Pixel c)
 {
   Pixel* pixels = image->pixels;
 
-  Pixel pxValue =
-  {
-    .r = r,
-    .g = g,
-    .b = b
-  };
-
   unsigned int pixelIndex = x + y * WIDTH;
   if (pixelIndex < WIDTH * HEIGHT)
-    pixels[pixelIndex] = pxValue;
+    pixels[pixelIndex] = c;
 }

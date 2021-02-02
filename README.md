@@ -1,8 +1,6 @@
 # C-Render
 
 ## Overview
-A Low level Renderer written with C.
-
 A revisit for ssloy's tiny renderer while building it with a different language and libraries.
 
 ## Brief Description
